@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Turist</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Instrument+Sans:wght@400;500;600&display=swap">
+<style>
+:root{--bg:#F1F5F9;--sf:#fff;--tx:#0F1F3D;--mu:#54627D;--ln:#D5DDE8;--ink:#0F1F3D;--bl:#1F5FBF;--tq:#0E9AA0;--sa:#F4B942;--on:#fff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0B1426;--sf:#132039;--tx:#EAF0FA;--mu:#9DAECB;--ln:#26385A;--ink:#060D1B;--bl:#6FA0F5;--tq:#3CC6CB}}
+:root[data-theme="dark"]{--bg:#0B1426;--sf:#132039;--tx:#EAF0FA;--mu:#9DAECB;--ln:#26385A;--ink:#060D1B;--bl:#6FA0F5;--tq:#3CC6CB}
+html{scroll-padding-top:70px;scroll-behavior:smooth}*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:17px/1.6 "Instrument Sans",system-ui,sans-serif}
+h1,h2,h3{font-family:"Bricolage Grotesque","Instrument Sans",system-ui,sans-serif;line-height:1.1;margin:0}
+button,select,input,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--sa);outline-offset:2px}
+header{position:sticky;top:0;z-index:5;background:var(--ink);color:#fff;display:flex;align-items:center;gap:18px;padding:12px 5vw;flex-wrap:wrap}
+.logo{font:800 24px "Bricolage Grotesque",sans-serif;letter-spacing:-.5px;margin-right:auto}.logo i{font-style:normal;color:var(--sa)}
+nav{display:flex;gap:16px}nav a{color:#cfd9ec;text-decoration:none;font-weight:500}nav a:hover{color:#fff}
+.lang{display:flex;background:#ffffff1a;border-radius:99px;padding:3px}
+.lang button{background:none;border:0;color:#fff;padding:5px 12px;border-radius:99px;cursor:pointer;font-weight:600}
+.lang button[aria-pressed=true]{background:var(--sa);color:#0F1F3D}
+main>section{padding:72px 5vw;max-width:1120px;margin:auto}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding-top:56px}
+.hero h1{font-size:clamp(38px,6vw,68px);letter-spacing:-2px;font-weight:800}
+.hero p{color:var(--mu);font-size:20px;max-width:34em;margin:18px 0 28px}
+.btn{display:inline-block;background:var(--bl);color:#fff;border:0;border-radius:12px;padding:13px 22px;font-weight:600;text-decoration:none;cursor:pointer}
+.btn.alt{background:none;color:var(--tx);border:2px solid var(--ln);margin-left:8px}
+.btn.sm{padding:8px 14px;font-size:15px}.btn:disabled{opacity:.5;cursor:default}
+.demo{background:var(--ink);color:#fff;border-radius:28px;padding:26px;position:relative}
+.demo .cam{aspect-ratio:4/3;border-radius:18px;background:linear-gradient(135deg,#1F5FBF,#0E9AA0);display:grid;place-items:center;font-size:96px}
+.demo .cap{margin-top:14px;background:#fff;color:#0F1F3D;border-radius:14px;padding:14px 16px;font:700 24px "Bricolage Grotesque",sans-serif}
+.demo small{display:block;color:#9DAECB;margin-top:10px}
+h2{font-size:clamp(30px,4vw,44px);letter-spacing:-1px;margin-bottom:8px}.sub{color:var(--mu);margin:0 0 28px;max-width:40em}
+.bar{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:22px}
+select,input,textarea{background:var(--sf);border:2px solid var(--ln);border-radius:12px;padding:10px 14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px}
+.card{background:var(--sf);border:2px solid var(--ln);border-radius:20px;padding:20px;text-align:left;cursor:pointer;min-height:170px;display:flex;flex-direction:column;gap:8px;width:100%}
+.card .ic{font-size:44px;line-height:1}.card b{font:700 21px/1.25 "Bricolage Grotesque",sans-serif}
+.card.on{border-color:var(--tq)}.card span{color:var(--mu);font-size:15px}.card em{font-style:normal;color:var(--tq);font-weight:600}
+.quiz{margin-top:36px;background:var(--sf);border:2px solid var(--ln);border-radius:24px;padding:26px}
+.quiz .q{font:700 28px "Bricolage Grotesque",sans-serif;margin:8px 0 18px}
+.opts{display:flex;gap:12px;flex-wrap:wrap}.opts button{font-size:52px;background:var(--bg);border:3px solid var(--ln);border-radius:18px;width:96px;height:96px;cursor:pointer}
+.opts button.ok{border-color:#1a9c55;background:#1a9c5533}.opts button.no{border-color:#d33;background:#d3333322}
+.panel{background:var(--sf);border:2px solid var(--ln);border-radius:24px;padding:22px}
+.two{display:grid;grid-template-columns:1.3fr 1fr;gap:20px}
+.chat{height:380px;overflow:auto;display:flex;flex-direction:column;gap:10px;padding:4px}
+.msg{max-width:88%;padding:12px 16px;border-radius:16px;white-space:pre-wrap}
+.msg.u{align-self:flex-end;background:var(--bl);color:#fff}.msg.a{background:var(--bg);border:1px solid var(--ln)}
+.msg button{display:block;margin-top:8px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}.chips button{border:2px solid var(--ln);background:none;border-radius:99px;padding:6px 14px;cursor:pointer}
+.row{display:flex;gap:10px}.row input{flex:1;min-width:0}
+video{width:100%;aspect-ratio:4/3;background:#000;border-radius:18px;object-fit:cover;transform:scaleX(-1)}
+.out{font:700 30px/1.25 "Bricolage Grotesque",sans-serif;min-height:80px;margin:12px 0}
+.note{color:var(--mu);font-size:14px}
+#big{position:fixed;inset:0;z-index:20;background:var(--ink);color:#fff;display:none;flex-direction:column;justify-content:center;align-items:center;padding:6vw;text-align:center}
+#big.open{display:flex}#big p{font:800 clamp(32px,8vw,88px)/1.1 "Bricolage Grotesque",sans-serif;margin:0 0 32px;overflow:auto;max-height:70vh}
+footer{padding:30px 5vw;color:var(--mu);text-align:center;font-size:14px}
+@media(max-width:820px){.hero,.two{grid-template-columns:1fr}nav{display:none}main>section{padding:48px 5vw}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">Tur<i>ist</i></div>
+  <nav><a href="#learn" data-i="nav1"></a><a href="#tourist" data-i="nav2"></a><a href="#camera" data-i="nav3"></a></nav>
+  <div class="lang" role="group" aria-label="Language"><button data-l="en">EN</button><button data-l="ru">RU</button><button data-l="uz">UZ</button></div>
+</header>
+<main>
+<section class="hero">
+  <div>
+    <h1 data-i="h1"></h1>
+    <p data-i="sub"></p>
+    <a class="btn" href="#learn" data-i="c1"></a><a class="btn alt" href="#camera" data-i="c2"></a>
+  </div>
+  <div class="demo" aria-hidden="true"><div class="cam">🤟</div><div class="cap" data-i="demo"></div><small data-i="demos"></small></div>
+</section>
+
+<section id="learn">
+  <h2 data-i="l_t"></h2><p class="sub" data-i="l_s"></p>
+  <div class="bar"><label for="tgt" data-i="l_i"></label>
+    <select id="tgt"><option value="en">English</option><option value="ru">Русский</option><option value="uz">O‘zbekcha</option></select>
+    <span class="note" data-i="l_h"></span></div>
+  <div class="grid" id="cards"></div>
+  <div class="quiz"><b data-i="q_t"></b><div class="q" id="qtext"></div><div class="opts" id="qopts"></div>
+    <p class="note" id="qfb" aria-live="polite"></p><button class="btn sm" id="qnext" data-i="q_n"></button></div>
+</section>
+
+<section id="tourist">
+  <h2 data-i="t_t"></h2><p class="sub" data-i="t_s"></p>
+  <div class="bar"><label for="ctry" data-i="t_c"></label><select id="ctry"></select>
+    <label><input type="checkbox" id="deaf"> <span data-i="t_d"></span></label></div>
+  <div class="two">
+    <div class="panel"><div class="chat" id="chat" aria-live="polite"></div>
+      <div class="chips" id="chips"></div>
+      <div class="row"><input id="ask" data-ip="t_p"><button class="btn" id="send" data-i="t_a"></button></div></div>
+    <div class="panel"><h3 data-i="tr_t"></h3><p class="note" data-i="tr_s"></p>
+      <textarea id="trin" rows="4" style="width:100%" data-ip="tr_p"></textarea>
+      <div class="out" id="trout" style="font-size:24px;min-height:60px" aria-live="polite"></div>
+      <button class="btn sm" id="trbtn" data-i="tr_b"></button>
+      <button class="btn sm alt" id="trbig" data-i="big"></button>
+      <button class="btn sm alt" id="trsay" data-i="say"></button></div>
+  </div>
+</section>
+
+<section id="camera">
+  <h2 data-i="k_t"></h2><p class="sub" data-i="k_s"></p>
+  <div class="two">
+    <div class="panel"><video id="vid" autoplay playsinline muted></video>
+      <div class="bar" style="margin:14px 0 0"><button class="btn sm" id="kstart" data-i="k_on"></button><button class="btn sm" id="kread" disabled data-i="k_r"></button><button class="btn sm alt" id="kstop" data-i="k_off"></button></div></div>
+    <div class="panel">
+      <div class="bar"><label for="sl" data-i="k_sl"></label><select id="sl"><option>ASL</option><option>BSL</option><option value="Russian Sign Language">RSL</option><option value="Uzbek Sign Language">O‘ZS</option></select></div>
+      <div class="bar"><label for="ol" data-i="k_ol"></label><select id="ol"><option value="English">English</option><option value="Russian">Русский</option><option value="Uzbek">O‘zbekcha</option></select></div>
+      <div class="out" id="kout" aria-live="polite"></div>
+      <button class="btn sm alt" id="kbig" data-i="big"></button><button class="btn sm alt" id="ksay" data-i="say"></button>
+      <p class="note" data-i="k_n"></p></div>
+  </div>
+</section>
+</main>
+<footer>Turist · <span data-i="foot"></span></footer>
+<div id="big" role="dialog" aria-modal="true"><p id="bigt"></p><button class="btn" id="bigx" data-i="close"></button></div>
+
+<script>
+const T={
+en:{nav1:"Learn",nav2:"Tourist",nav3:"Sign camera",h1:"Language belongs to everyone.",sub:"Foreign-language lessons designed for deaf and mute learners, and a travel companion that explains a country's customs and translates for you.",c1:"Start learning",c2:"Try the sign camera",demo:"Where is my hotel?",demos:"Sign language → simple text, live.",
+l_t:"Learn a language",l_s:"Visual, text-first lessons. Tap a card to see the phrase in all three languages, then test yourself with pictures.",l_i:"I want to learn:",l_h:"Tap a card to flip it.",q_t:"Picture quiz",q_n:"Next question",q_ok:"Correct!",q_no:"Not quite. Try another picture.",
+t_t:"Tourist guide",t_s:"Ask about values, etiquette and daily life in the country you're visiting. Answers use short, clear sentences.",t_c:"Visiting:",t_d:"Deaf / mute mode (visual, written answers)",t_p:"Ask about customs, greetings, tipping…",t_a:"Ask",
+tr_t:"Translate & show",tr_s:"Type what you want to say. Show the screen to a local, or play it aloud.",tr_p:"Type your message…",tr_b:"Translate",big:"Show large",say:"Play aloud",
+k_t:"Sign language camera",k_s:"Point the camera at a signer. Turist reads a short burst of frames and writes what was signed in simple language.",k_on:"Start camera",k_r:"Translate signs",k_off:"Stop",k_sl:"Sign language:",k_ol:"Write in:",k_n:"Experimental: reads short bursts of frames, so results can be wrong. Sign one word or phrase at a time, in good light, with hands and face in view. Use only for simple communication, not for medical or legal matters.",
+off:"AI is unavailable right now. Please try again later.",think:"Thinking…",foot:"Made for accessible travel.",close:"Close",cerr:"Camera unavailable. Allow camera access and try again.",noimg:"Image reading is not available in this view.",hold:"Reading signs… hold still.",
+chips:["Greetings","Dining etiquette","Dress code","Tipping & bargaining","Emergency help"]},
+ru:{nav1:"Учиться",nav2:"Турист",nav3:"Камера жестов",h1:"Язык принадлежит каждому.",sub:"Уроки иностранных языков для глухих и немых, а также помощник в путешествии: объяснит обычаи страны и переведёт за вас.",c1:"Начать учиться",c2:"Камера жестов",demo:"Где мой отель?",demos:"Жестовый язык → простой текст, в реальном времени.",
+l_t:"Изучение языка",l_s:"Наглядные уроки с упором на текст. Нажмите карточку, чтобы увидеть фразу на трёх языках, затем проверьте себя по картинкам.",l_i:"Хочу учить:",l_h:"Нажмите карточку, чтобы перевернуть.",q_t:"Викторина с картинками",q_n:"Следующий вопрос",q_ok:"Верно!",q_no:"Не совсем. Попробуйте другую картинку.",
+t_t:"Путеводитель туриста",t_s:"Спрашивайте о ценностях, этикете и повседневной жизни страны, которую посещаете. Ответы короткие и понятные.",t_c:"Еду в:",t_d:"Режим для глухих и немых (письменные ответы)",t_p:"Спросите об обычаях, приветствиях, чаевых…",t_a:"Спросить",
+tr_t:"Перевод и показ",tr_s:"Напишите, что хотите сказать. Покажите экран местному жителю или воспроизведите вслух.",tr_p:"Введите сообщение…",tr_b:"Перевести",big:"Показать крупно",say:"Озвучить",
+k_t:"Камера жестового языка",k_s:"Наведите камеру на говорящего жестами. Turist проанализирует серию кадров и напишет сказанное простым языком.",k_on:"Включить камеру",k_r:"Перевести жесты",k_off:"Стоп",k_sl:"Жестовый язык:",k_ol:"Писать на:",k_n:"Экспериментально: анализируются короткие серии кадров, возможны ошибки. Показывайте одно слово или фразу за раз, при хорошем свете, чтобы были видны руки и лицо. Только для простого общения, не для медицинских или юридических вопросов.",
+off:"ИИ сейчас недоступен. Повторите попытку позже.",think:"Думаю…",foot:"Создано для доступных путешествий.",close:"Закрыть",cerr:"Камера недоступна. Разрешите доступ к камере и повторите.",noimg:"Чтение изображений недоступно в этом режиме.",hold:"Читаю жесты… не двигайтесь.",
+chips:["Приветствия","Этикет за столом","Дресс-код","Чаевые и торг","Экстренная помощь"]},
+uz:{nav1:"O‘rganish",nav2:"Turist",nav3:"Imo kamerasi",h1:"Til hamma uchun.",sub:"Kar va soqovlar uchun chet tili darslari hamda sayohatda yordamchi: davlat urf-odatlarini tushuntiradi va tarjima qiladi.",c1:"O‘rganishni boshlash",c2:"Imo kamerasini sinash",demo:"Mehmonxonam qayerda?",demos:"Imo tili → oddiy matn, jonli.",
+l_t:"Til o‘rganish",l_s:"Ko‘rgazmali, matnga asoslangan darslar. Kartani bosing, ibora uch tilda ko‘rinadi, so‘ng rasmlar bilan o‘zingizni sinang.",l_i:"O‘rganmoqchi bo‘lgan til:",l_h:"Kartani bosib aylantiring.",q_t:"Rasmli viktorina",q_n:"Keyingi savol",q_ok:"To‘g‘ri!",q_no:"Unchalik emas. Boshqa rasmni tanlang.",
+t_t:"Turist yo‘lboshchisi",t_s:"Borayotgan davlatingizning qadriyatlari, odob-axloqi va kundalik hayoti haqida so‘rang. Javoblar qisqa va tushunarli.",t_c:"Boraman:",t_d:"Kar / soqov rejimi (yozma javoblar)",t_p:"Urf-odat, salomlashuv, choy puli haqida so‘rang…",t_a:"So‘rash",
+tr_t:"Tarjima va ko‘rsatish",tr_s:"Aytmoqchi bo‘lganingizni yozing. Ekranni mahalliy aholiga ko‘rsating yoki ovoz chiqarib eshittiring.",tr_p:"Xabarni yozing…",tr_b:"Tarjima qilish",big:"Katta ko‘rsatish",say:"Ovozli o‘qish",
+k_t:"Imo tili kamerasi",k_s:"Kamerani imo bilan gapirayotgan odamga qarating. Turist bir necha kadrni o‘qib, aytilganini oddiy tilda yozadi.",k_on:"Kamerani yoqish",k_r:"Imolarni tarjima qilish",k_off:"To‘xtatish",k_sl:"Imo tili:",k_ol:"Yozish tili:",k_n:"Tajribaviy: qisqa kadrlar ketma-ketligi o‘qiladi, xatolar bo‘lishi mumkin. Bir vaqtda bitta so‘z yoki ibora ko‘rsating, yorug‘ joyda, qo‘l va yuz ko‘rinib tursin. Faqat oddiy muloqot uchun, tibbiy yoki huquqiy masalalar uchun emas.",
+off:"AI hozir mavjud emas. Keyinroq qayta urining.",think:"O‘ylayapman…",foot:"Qulay sayohat uchun yaratilgan.",close:"Yopish",cerr:"Kamera mavjud emas. Ruxsat bering va qayta urining.",noimg:"Bu rejimda rasmni o‘qish mavjud emas.",hold:"Imolarni o‘qiyapman… qimirlamang.",
+chips:["Salomlashuv","Dasturxon odobi","Kiyinish odobi","Choy puli va savdo","Shoshilinch yordam"]}};
+const P=[["👋","Hello","Здравствуйте","Assalomu alaykum"],["🙏","Thank you","Спасибо","Rahmat"],["🆘","I need help","Мне нужна помощь","Menga yordam kerak"],["🤟","I am deaf. Please write.","Я глухой. Пожалуйста, напишите.","Men karman. Iltimos, yozib bering."],["💧","Where can I buy water?","Где купить воду?","Suvni qayerdan olsam bo‘ladi?"],["🏷️","How much is it?","Сколько это стоит?","Bu qancha turadi?"],["🚻","Where is the toilet?","Где туалет?","Hojatxona qayerda?"],["🏨","Where is my hotel?","Где мой отель?","Mening mehmonxonam qayerda?"]];
+const C=[["Uzbekistan","Uzbek","uz-UZ"],["Türkiye","Turkish","tr-TR"],["Japan","Japanese","ja-JP"],["Germany","German","de-DE"],["United Arab Emirates","Arabic","ar-AE"],["United States","English","en-US"],["Russia","Russian","ru-RU"]];
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+let L=localStorage.getItem("turist-l")||"en",flipped={},qi=0,hist=[],S=null,stream=null;
+try{L=localStorage.getItem("turist-l")||L}catch(e){}
+const IDX={en:1,ru:2,uz:3};
+function setLang(l){L=l;try{localStorage.setItem("turist-l",l)}catch(e){}document.documentElement.lang=l;
+ $$("[data-i]").forEach(e=>e.textContent=T[l][e.dataset.i]);$$("[data-ip]").forEach(e=>e.placeholder=T[l][e.dataset.ip]);
+ $$(".lang button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.l===l));
+ $("#ol").value={en:"English",ru:"Russian",uz:"Uzbek"}[l];
+ $("#chips").innerHTML="";T[l].chips.forEach(c=>{const b=document.createElement("button");b.textContent=c;b.onclick=()=>{$("#ask").value=c;ask()};$("#chips").append(b)});
+ cards();quiz()}
+$$(".lang button").forEach(b=>b.onclick=()=>setLang(b.dataset.l));
+C.forEach((c,i)=>$("#ctry").add(new Option(c[0],i)));
+/* Learn */
+function cards(){const t=IDX[$("#tgt").value];$("#cards").innerHTML="";
+ P.forEach((p,i)=>{const b=document.createElement("button");b.className="card"+(flipped[i]?" on":"");
+  b.setAttribute("aria-label",p[t]);
+  b.innerHTML=flipped[i]?`<span class="ic">${p[0]}</span>`+["en","ru","uz"].map(k=>k==$("#tgt").value?`<em>${p[IDX[k]]}</em>`:`<span>${p[IDX[k]]}</span>`).join(""):`<span class="ic">${p[0]}</span><b>${p[t]}</b>`;
+  b.onclick=()=>{flipped[i]=!flipped[i];cards();$$(".card")[i].focus()};$("#cards").append(b)})}
+$("#tgt").onchange=()=>{cards();quiz()};
+function quiz(){const t=IDX[$("#tgt").value];qi=qi%P.length;$("#qtext").textContent=P[qi][t];$("#qfb").textContent="";
+ const o=[qi];while(o.length<3){const r=Math.floor(Math.random()*P.length);if(!o.includes(r))o.push(r)}
+ o.sort(()=>Math.random()-.5);$("#qopts").innerHTML="";
+ o.forEach(i=>{const b=document.createElement("button");b.textContent=P[i][0];b.setAttribute("aria-label",P[i][IDX[L]]);
+  b.onclick=()=>{const ok=i===qi;b.className=ok?"ok":"no";$("#qfb").textContent=T[L][ok?"q_ok":"q_no"]};$("#qopts").append(b)})}
+$("#qnext").onclick=()=>{qi=Math.floor(Math.random()*P.length);quiz()};
+/* AI */
+async function ai(){if(S)return S;
+ const b64=b=>new Promise(r=>{const f=new FileReader();f.onload=()=>r(f.result.split(",")[1]);f.readAsDataURL(b)});
+ const f=async(input,o={})=>{const messages=typeof input==="string"?[{role:"user",content:input}]:input;
+  const images=o.images?await Promise.all(o.images.map(b64)):[];
+  const r=await fetch("/api/ai",{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({messages,images,tier:o.modelTier||"default"})});
+  if(!r.ok)throw{code:"error"};const d=await r.json();if(o.onText)o.onText({text:d.text});return{text:d.text}};
+ f.limits=async()=>({images:{}});S=f;return S}
+const LN={en:"English",ru:"Russian",uz:"Uzbek (Latin script)"};
+function addMsg(c,t){const d=document.createElement("div");d.className="msg "+c;d.textContent=t;$("#chat").append(d);$("#chat").scrollTop=1e9;return d}
+function bigShow(t){$("#bigt").textContent=t;$("#big").classList.add("open");$("#bigx").focus()}
+$("#bigx").onclick=()=>$("#big").classList.remove("open");
+document.addEventListener("keydown",e=>{if(e.key==="Escape")$("#big").classList.remove("open")});
+function say(t,lang){if(!t||!window.speechSynthesis)return;const u=new SpeechSynthesisUtterance(t);u.lang=lang;speechSynthesis.cancel();speechSynthesis.speak(u)}
+const VL={en:"en-US",ru:"ru-RU",uz:"uz-UZ"};
+async function ask(){const q=$("#ask").value.trim();if(!q)return;$("#ask").value="";addMsg("u",q);
+ const s=await ai(),d=addMsg("a",T[L].think);if(!s){d.textContent=T[L].off;return}
+ const c=C[$("#ctry").value],deaf=$("#deaf").checked;
+ const ins=`You are Turist, a warm, accurate travel guide for ${c[0]}. Reply in ${LN[L]}. Cover local values, daily customs, etiquette and useful phrases (give key phrases in ${c[1]} with a transliteration if the script is not Latin). Use short, plain sentences, no idioms. ${deaf?"The traveller is deaf or mute: never suggest speaking or listening; suggest written, visual, gesture or app-based ways to communicate, and tips for showing a written note.":"Keep it practical for a general traveller."} Max 120 words. Do not invent laws or prices; say if unsure.\n\nQuestion: `;
+ const turns=hist.slice(-6).concat([{role:"user",content:ins+q}]);
+ try{const r=await s(turns,{modelTier:"quick",cache:false,onText:({text})=>{d.textContent=text;$("#chat").scrollTop=1e9}});
+  d.textContent=r.text;hist.push({role:"user",content:q},{role:"assistant",content:r.text});
+  const b=document.createElement("button");b.className="btn sm alt";b.textContent=T[L].big;b.onclick=()=>bigShow(r.text);d.append(b)}
+ catch(e){d.textContent=e.text||T[L].off}}
+$("#send").onclick=ask;$("#ask").onkeydown=e=>{if(e.key==="Enter")ask()};
+$("#trbtn").onclick=async()=>{const t=$("#trin").value.trim();if(!t)return;const s=await ai(),o=$("#trout"),c=C[$("#ctry").value];
+ if(!s){o.textContent=T[L].off;return}o.textContent=T[L].think;
+ try{const r=await s(`Translate into ${c[1]}. Reply with the translation only, then on a new line a Latin-script pronunciation guide if ${c[1]} is not written in Latin script.\n\n${t}`,{modelTier:"quick",onText:({text})=>o.textContent=text});o.textContent=r.text}catch(e){o.textContent=e.text||T[L].off}};
+$("#trbig").onclick=()=>bigShow($("#trout").textContent.split("\n")[0]);
+$("#trsay").onclick=()=>say($("#trout").textContent.split("\n")[0],C[$("#ctry").value][2]);
+/* Camera */
+$("#kstart").onclick=async()=>{try{stream=await navigator.mediaDevices.getUserMedia({video:{facingMode:"user",width:640,height:480}});$("#vid").srcObject=stream;$("#kread").disabled=false}catch(e){$("#kout").textContent=T[L].cerr}};
+$("#kstop").onclick=()=>{stream&&stream.getTracks().forEach(t=>t.stop());stream=null;$("#vid").srcObject=null;$("#kread").disabled=true};
+const snap=()=>{const v=$("#vid"),c=document.createElement("canvas");c.width=480;c.height=360;c.getContext("2d").drawImage(v,0,0,480,360);return new Promise(r=>c.toBlob(r,"image/jpeg",.75))};
+$("#kread").onclick=async()=>{const s=await ai(),o=$("#kout");if(!s){o.textContent=T[L].off;return}
+ let lim=null;try{lim=await s.limits()}catch(e){}if(!lim||!lim.images){o.textContent=T[L].noimg;return}
+ $("#kread").disabled=true;o.textContent=T[L].hold;const f=[];for(let i=0;i<4;i++){f.push(await snap());await new Promise(r=>setTimeout(r,450))}
+ const sl=$("#sl").value,ol=$("#ol").value;
+ try{const r=await s(`These are ${f.length} consecutive webcam frames (in time order) of a person using ${sl}. Work out the sign, fingerspelled letters or short phrase. Reply in ${ol} with ONE simple sentence or word only. If the signing is unclear or no hands are visible, say so briefly in ${ol} and do not guess.`,{images:f,modelTier:"default",cache:false});o.textContent=r.text}
+ catch(e){o.textContent=e.text||T[L].off}$("#kread").disabled=!stream};
+$("#kbig").onclick=()=>bigShow($("#kout").textContent);
+$("#ksay").onclick=()=>say($("#kout").textContent,VL[{English:"en",Russian:"ru",Uzbek:"uz"}[$("#ol").value]]);
+setLang(L);
+</script>
+</body>
+</html>
